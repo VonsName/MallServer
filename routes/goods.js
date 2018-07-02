@@ -10,7 +10,14 @@ mongoose.connection.on("error",function () {
     console.log("数据库连接失败");
 });
 router.get("/",function (req,res,next) {
-    Goods.find({},function (err,doc) {
+    let sort=req.param('sort');
+    let pageNum = parseInt(req.param('pageNum'));
+    let pageSize = parseInt(req.param('pageSize'));
+    let skip=(pageNum-1)*pageSize;
+    let params={};
+    let goodsModel = Goods.find(params).skip(skip).limit(pageSize);
+    goodsModel.sort({'salePrice':sort});
+    goodsModel.exec(function (err,doc) {
         if (err){
             res.json({
                 status:"0",
