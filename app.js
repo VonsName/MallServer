@@ -20,6 +20,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req,res,next)=>{
+  if (req.cookies.userId){
+    next()
+  } else {//req.originalUrl.indexOf("/goods/list")>-1
+    if (req.originalUrl==='/users/login'||req.originalUrl==='/users/logout'||req.path==='/goods'){
+        next()
+    }else {
+      res.json({
+          "Status":"0",
+          "msg":"请去登陆",
+          "result":""
+      });
+
+    }
+  }
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/goods', goodsRouter);

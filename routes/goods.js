@@ -86,14 +86,14 @@ router.post("/addCart",(req,res,next)=>{
                 if (productItem){
                     userDoc.save((err3,data)=>{
                         if (!err3){
-                            res.json({
-                                status:"1",
-                                msg:"操作成功",
-                                result:"success edit"
+                            res.send({
+                                "Status" :"1",
+                                "msg":"操作成功",
+                                "result":"success edit"
                             });
                         }else {
-                            res.json({
-                                status:"0",
+                            res.send({
+                                Status:"0",
                                 msg:err3.message,
                                 result:"fail"
                             });
@@ -111,13 +111,13 @@ router.post("/addCart",(req,res,next)=>{
                                 userDoc.save((err2,data)=>{
                                     if (!err2){
                                         res.json({
-                                            status:"1",
-                                            msg:"操作成功",
-                                            result:"success"
+                                            "Status":"1",
+                                            "msg":"操作成功",
+                                            "result":"success"
                                         });
                                     }else {
                                         res.json({
-                                            status:"0",
+                                            Status:"0",
                                             msg:err2.message,
                                             result:"fail"
                                         });
@@ -125,14 +125,14 @@ router.post("/addCart",(req,res,next)=>{
                                 });
                             } else {
                                 res.json({
-                                    status:"0",
+                                    Status:"0",
                                     msg:"商品信息不存在",
                                     result:"fail"
                                 });
                             }
                         }else {
                             res.json({
-                                status:"0",
+                                Status:"0",
                                 msg:err1.message,
                                 result:"fail"
                             })
@@ -141,14 +141,14 @@ router.post("/addCart",(req,res,next)=>{
                 }
             }else {
                 res.json({
-                    status:"0",
+                    Status:"0",
                     msg:"对不起,用户信息错误",
                     result:"fail"
                 })
             }
         } else {
             res.json({
-                status:"0",
+                Status:"0",
                 msg:err.message,
                 result:"fail"
             })
