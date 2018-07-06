@@ -105,8 +105,8 @@ router.post("/addCart",(req,res,next)=>{
                     },(err1,pdoc)=>{
                         if (!err1){
                             if (pdoc){
-                                pdoc.productNum="1";
-                                pdoc.checked="1";
+                                pdoc.productNum=1;
+                                pdoc.checked=1;
                                 userDoc.cartList.push(pdoc);
                                 userDoc.save((err2,data)=>{
                                     if (!err2){

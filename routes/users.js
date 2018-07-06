@@ -122,4 +122,29 @@ router.post("/cart/del",(req,res,next)=>{
         }
    })
 });
+
+//修改购物车商品
+router.post("/cart/edit",(req,res,next)=>{
+    let userId = req.cookies.userId;
+    let productId = req.body.productId;
+    let productNum = req.body.productNum;
+    let check = req.body.check;
+    Users.update({userId:userId,"cartList.productId":productId},{
+        "cartList.$.productNum":productNum,"cartList.$.checked":check
+    },(err,doc)=>{
+        if (err){
+            res.json({
+                "Status":"0",
+                "msg":"fail",
+                "result":"操作失败"
+            });
+        }else {
+            res.json({
+                "Status":"1",
+                "msg":"success",
+                "result":"操作成功"
+            });
+        }
+    })
+});
 module.exports = router;
