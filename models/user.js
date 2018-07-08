@@ -4,7 +4,8 @@ let userSchema = new mongoose.Schema(
         "userId":String,
         "userName":String,
         "userPwd":String,
-        "orderList":Array,
+        "orderList":[
+        ],
         "cartList":[
             {
                 "productId":String,
@@ -15,7 +16,16 @@ let userSchema = new mongoose.Schema(
                 "productNum":Number
             }
         ],
-        "addressList":Array
+        "addressList":[
+            {
+                "addressId" : {type:String},
+                "userName" : {type:String},
+                "streetName" : {type:String},
+                "postCode" : {type:String},
+                "tel" : {type:String},
+                "isDefault" : {type:Boolean}
+            }
+        ]
     }
 );
 module.exports=mongoose.model('User',userSchema);
